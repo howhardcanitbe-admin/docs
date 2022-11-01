@@ -11,3 +11,6 @@ This is the second post testing Jekyll
 
 Added a new line
 
+* and some bullets
+* 2 in fact
+
