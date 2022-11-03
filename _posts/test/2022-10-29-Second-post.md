@@ -11,6 +11,12 @@ This is the second post testing Jekyll
 
 Added a new line
 
+Now with an image served from Jekyll
+
+![Desktop View](/assets/img/brand/HHCIB_Black_BG_590x432.png)
+
+This is now is its own folder
+
 * and some bullets
 * 2 in fact
 

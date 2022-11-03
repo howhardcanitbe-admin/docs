@@ -34,7 +34,7 @@ github:
   username: howhardcanitbe-admin             # change to your github username
 
 twitter:
-  username: twitter_username            # change to your twitter username
+  username: HHCIB_Live         # change to your twitter username
 
 social:
   # Change to your full name.
@@ -82,7 +82,7 @@ theme_mode:   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: https://twitter.com/howhardcanitbe5/photo
+avatar: /assets/img/brand/HHCIB_Black_BG_small-boarder.png
 
 # boolean type, the global switch for ToC in posts.
 toc: true
