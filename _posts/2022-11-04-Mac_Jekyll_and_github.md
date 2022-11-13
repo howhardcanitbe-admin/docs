@@ -11,7 +11,9 @@ pin: true
 
 ## Overview
 
-Whilst setting up our channel and the linked services, we decided to create a supporting documentation site to capture project details. We followed posts from "Techno Tim" which we great but didnt quite work for us. Here we share what we found and what worked for us.
+Whilst setting up our YouTube channel [How Hard Can It Be](https://www.youtube.com/@howhardcanitbe-live) and the linked services, we decided to create a supporting documentation site to capture project details. We followed posts from [Techno Tim](https://youtu.be/F8iOU1ci19Q) which were great but didn't quite work for us. I recommend you follow and subscribe to to [Tim's channel](https://www.youtube.com/c/TechnoTimLive), he has some great content and clear details to get things working.
+
+ Here we share what we found and what worked for us:
 
 ## Our Setup
 
@@ -47,6 +49,8 @@ Install openssl and setup the environment variables:
 ```shell
 brew install openssl
 ```
+The original attempts to compile failed due to SSL errors so to work around the issues we used a specific set of libraries which are set using the environment variables below. We had two versions of SSL "openssl@1.1" and "openssl@3" which was the default. By using "openssl@1.1" we managed to get Jekyll to compile. 
+
 Set the environment variables to the following in either ~/.zshrc or ~/.bash:
 
 ```shell
@@ -60,7 +64,9 @@ PKG_CONFIG_PATH=/opt/homebrew/opt/openssl@1.1/lib/pkgconfig
 arch -arm64 gem install --user-install bundler jekyll
 ```
 
+# Summary
 
+Hopefully everything worked and your Jekyll site compiled correctly. If you have issues, the compile logs are very verbose and that combined with lots of Googling eventually solved our issues. I hope this helps someone else and saves you a little time.
 
 
 
