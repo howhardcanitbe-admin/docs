@@ -11,13 +11,19 @@ pin: true
 
 ## Overview
 
-One of our recent projects is to make our home more resilient. We installed UPS systems for critical services, install power bypass to enable powering the entire home from a generator and installing a backup 5G modem and antenna. All of this means that if the power goes out or if NBN(Internet) fails, the house automatically fails over to backup services and lets us know.
+One of our recent projects was to make our home more resilient. We installed UPS systems for critical systems and services, install power bypass to enable powering the entire home from a generator and installing a backup 5G modem and antenna. All of this means that if the power goes out or if NBN(Internet) fails, the house automatically fails over to backup services and lets us know.
 
-This is a related project to automation it infrastructure actions based on resilience events. The general plan is that Home Assistant will detect events and trigger automations executed by Ansible to manage systems and servers enabling a controlled response to resilience issues. For example, shutting down non-critical systems whilst on UPS power.
+This is a related project to automation IT infrastructure actions based on resilience events. The general plan is that Home Assistant will detect events and trigger automations executed by Ansible to manage systems and servers enabling a controlled response to resilience issues. For example, shutting down non-critical systems whilst on UPS power.
 
-## References
+## References & Links
 
- * [Techno Tim](https://youtu.be/F8iOU1ci19Q) 
+* [How Hard Can It Be Youtube Channel](https://youtube.com/@howhardcanitbe-live)
+
+ * [Techno Tim](https://youtu.be/F8iOU1ci19Q)
+ * [Home Assistant](https://www.home-assistant.io/)
+ * [Ansible](https://www.ansible.com/)
+    * [Installing Ansible on Raspberry Pi](https://www.theurbanpenguin.com/installing-ansible-on-the-raspberry-pi/)
+ * [Ansible AWX](https://www.ansible.com/community/awx-project)
 
 ## Related Projects
 
@@ -30,74 +36,109 @@ Companion projects are listed below and where the documentation is ready, its li
 
 ## Our Setup
 
+Ansible is installed on a Raspberry PI used as the Pi-Hole DNS Server. Ansible has its own GIT repo and so its easy to move in the future. In the future we will be deploying a resilient Proxmox cluster and Ansible will eventually reside there.
+
+We also plan to use [Ansible AWX](https://www.ansible.com/community/awx-project) to provide a GUI and management framework for Ansible. This also provides an API that Home Assistant can use to trigger Ansible playbooks.
+
+## Installing Everything
+
+### Ansible
+
+These are the commands used on the Raspberry PI to install Ansible:
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-.
-
-
-
-
-
-## Working Versions
-
+1) Add the Ansible repo
 ```shell
-$ ruby -v
-ruby 3.0.0p0 (2020-12-25 revision 95aff21468) [arm64-darwin21]
-
-$ bundle --version
-Bundler version 2.3.24
-
-$ brew --version
-Homebrew 3.6.7
-Homebrew/homebrew-core (git revision 3768ae96c6f; last commit 2022-10-31)
-Homebrew/homebrew-cask (git revision f11b87600d; last commit 2022-10-31)
+sudo echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" >> /etc/apt/sources.list
 ```
 
-# Issues & Workarounds
-
-## Installing Ruby
-
-The default install mechanism for Ruby didn't "just work" when trying to install on the Mac M1 machine. What worked for us was:
-
+2) Install the GPG Directory Manager
 ```shell
-brew install ruby@3.0
+sudo apt install dirmngr -y
 ```
 
-Install openssl and setup the environment variables:
-
+3) Get the GPG signing key from Ububtu
 ```shell
-brew install openssl
-```
-The original attempts to compile failed due to SSL errors so to work around the issues we used a specific set of libraries which are set using the environment variables below. We had two versions of SSL "openssl@1.1" and "openssl@3" which was the default. By using "openssl@1.1" we managed to get Jekyll to compile. 
-
-Set the environment variables to the following in either ~/.zshrc or ~/.bash:
-
-```shell
-LDFLAGS=-L/opt/homebrew/opt/openssl@1.1/lib
-CPPFLAGS=-I/opt/homebrew/opt/openssl@1.1/include
-PKG_CONFIG_PATH=/opt/homebrew/opt/openssl@1.1/lib/pkgconfig
-```
-## Compiling Jekyll with SSL
-
-```shell
-arch -arm64 gem install --user-install bundler jekyll
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
 ```
 
-# Summary
+4) Update the package manager from the new repo
+```shell
+sudo apt update
+```
 
-Hopefully everything worked and your Jekyll site compiled correctly. If you have issues, the compile logs are very verbose and that combined with lots of Googling eventually solved our issues. I hope this helps someone else and saves you a little time.
+5) Add some common libraries
+```shell
+sudo apt install software-properties-common
+```
+
+6) Finally install Ansible and SSHpass to use passwords with Ansible
+```shell
+sudo apt install ansible sshpass
+```
+
+To validate that everything went ok and to confirm the version of Ansible installed use:
+
+```shell
+ansible --version
+
+ansible [core 2.12.10]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/xxxxxx/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  ansible collection location = /home/xxxxxx/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.9.2 (default, Feb 28 2021, 17:03:44) [GCC 10.2.1 20210110]
+  jinja version = 2.11.3
+  libyaml = True
+```
+### Docker
+
+1) First we need to install Docker, this will take a while, be patient:
+
+```shell
+curl -sSL https://get.docker.com | sh
+```
+
+2) Add the current user to the permissions to run docker commands:
+
+```shell
+sudo usermod -aG docker ${USER}
+```
+
+3) Install some prerequisites to be able to use PIP
+```shell
+sudo apt-get install libffi-dev libssl-dev
+sudo apt install python3-dev
+sudo apt-get install -y python3 python3-pip
+```
+4) And now we can install docker-compose
+```shell
+sudo pip3 install docker-compose
+```
+5) Enable the Docker system service to start at boot time
+```shell
+sudo systemctl enable docker
+```
+NOTE: I then needed to reboot before Docker would work correctly (not sure why) but you can check docker is working correctly using:
+```shell
+docker run hello-world
+```
+
+### AWX Prerequisites
+
+AWX has dependencies on NodeJS and a few other tools:
+```shell
+sudo apt install nodejs npm
+sudo apt install python3-pip git pwgen unzip
+sudo pip3 install requests==2.22.0 docker-compose==1.29.2
+```
+
+
+
+
+
+
 
 
 
