@@ -24,7 +24,7 @@ We have decided to go with an ESP32, Lipo Battery and Solar Cell to create a mor
 [LiPo 3.7v 1100mAh](https://core-electronics.com.au/polymer-lithium-ion-battery-1000mah-38458.html)
 
 [3.5W Solar Charger- Affiliate https://amzn.to/3EQ9YO6](https://amzn.to/3EQ9YO6)
-<br></br>
+<br>
 
 > *We don't get paid for promotions or get free products, if we do, we will specifically let you know. Using affiliate links helps to support our work without any cost to you.*
 
@@ -103,5 +103,5 @@ The above YAML is specific to the DFRobot ESP32-E as it exposes battery info on 
 
 Once you have this basic setup working, you should at least have an integrated ESP32 reporting battery usage:
 
-![Desktop View](/assets/img/posts/water-meter/ESP32-battery.jpeg){: height="300" .left } ![Desktop View](/assets/img/posts/water-meter/HA-Screenshot-water-meter.png){: height="200" .right }
+![Desktop View](/assets/img/posts/water-meter/ESP32-battery.jpeg){: height="200" width="200" .left } ![Desktop View](/assets/img/posts/water-meter/HA-Screenshot-water-meter.png){: height="200" .right }
 
