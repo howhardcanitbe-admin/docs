@@ -28,8 +28,6 @@ We have decided to go with an ESP32, Lipo Battery and Solar Cell to create a mor
 
 > *We don't get paid for promotions or get free products, if we do, we will specifically let you know. Using affiliate links helps to support our work without any cost to you.*
 
-<br>
-
 # Initial Build
 
 ## ESPhome
