@@ -101,11 +101,13 @@ The above YAML is specific to the DFRobot ESP32-E as it exposes battery info on 
 
 Once you have this basic setup working, you should at least have an integrated ESP32 reporting battery usage:
 
-![Desktop View](/assets/img/posts/water-meter/HA-Screenshot-water-meter.png){: height="200" }
+![Desktop View](/assets/img/posts/water-meter/HA-Screenshot-water-meter.png){: height="150" .left }
 
-![Desktop View](/assets/img/posts/water-meter/ESP32-battery.jpeg){: height="200" width="200" .left } 
+![Desktop View](/assets/img/posts/water-meter/ESP32-battery.jpeg){: height="200" width="200" .right } 
 
 <br>
+<br>
+
 
 # To Be Continued.....
 
