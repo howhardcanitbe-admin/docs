@@ -1,5 +1,5 @@
 ---
-title: Solar Power Water Meter
+title: Solar Powered Water Meter
 by: Stuart Hirst
 date: 2022-11-28 17:00:00
 categories: [homeassistant,ESPhome,utilities]
@@ -7,7 +7,7 @@ tags: [youtube,misc]
 pin: true
 ---
 
-# Solar Water Meter using ESPhome
+# Solar Powered Water Meter using ESPhome
 
 ## Overview
 
@@ -110,4 +110,15 @@ Once you have this basic setup working, you should at least have an integrated E
 # To Be Continued.....
 
 This project is under active development and so please check back again soon to see progress.
+
+ToDo:
+
+* Add counter YAML
+* Explore Deep_Sleep + Wifi quick connect
+* Reduce battery & status reporting
+* Test wake on GPIO trigger
+* Test sleep on idle
+
+
+
 
