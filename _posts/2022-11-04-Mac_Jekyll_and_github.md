@@ -7,7 +7,9 @@ tags: [youtube,misc]
 pin: true
 ---
 
-# Tips & Tricks to getting Jekyll working - Updated Again
+# Tips & Tricks to getting Jekyll working
+
+NOTE: This needs updating with new Github "Pages" options. 
 
 ## Overview
 
