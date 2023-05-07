@@ -7,7 +7,7 @@ tags: [youtube,misc]
 pin: true
 ---
 
-# Tips & Tricks to getting Jekyll working - Updated
+# Tips & Tricks to getting Jekyll working - Updated Again
 
 ## Overview
 
