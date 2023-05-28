@@ -1,0 +1,100 @@
+---
+title: "RALPH: Part 1 - In The Beginning...."
+by: Stuart Hirst
+date: 2023-05-27 12:00:00
+categories: [automation,technology]
+tags: [youtube,misc]
+pin: true
+img_path: /assets/img/posts/Ralph/
+---
+
+# RALPH: The Automated Full-Size Mower
+![Desktop View](RALPH-profile.jpeg){: height="250" width="250" .shadow .right }
+
+Ever pondered the time-consuming task of mowing your lawn and thought, "How hard can it be" to automate this? That's precisely the question I found myself asking during a conversation with a neighbor. The answer? RALPH - the Remote Autonomous Learning Platform Host. This fully automated, full-size mower was built using a relatively new Zero Turn Husqvarna mower, a Pixhawk flight controller, and a Raspberry Pi. This is the journey of how RALPH came to be.
+
+This is the first post of a few for RALPH as its a complex project, there will also be an accompanying video on our [YouTube channel](https://www.youtube.com/@howhardcanitbe-live) soon. I'll provide links to hardware and additional sources of information. 
+
+> *We don't get paid for promotions or get free products, if we do, we will specifically let you know. Using affiliate links helps to support our work without any cost to you.*
+
+## The Core Idea
+
+The concept for RALPH originated during a casual chat about the effort that goes into maintaining our lawns which are quite large, more like paddocks. It seemed like a task ripe for a tech solution. After all, in an era where technology has simplified countless aspects of our lives, why should lawn mowing be any different?
+
+## Phase 1: Physical Inputs
+
+![Desktop View](Savox-servo.jpg){: height="200" width="200" .right} 
+
+The initial phase involved setting up physical inputs to control and steer the mower. Several different servos and mechanical fixings were tried, tested, and adjusted. The result was a configuration of two 50KG servos with threaded bars and track rod ends. These created the linkages between the servos and the mower hydraulic inputs. Getting these linkages installed ensuring they were rigid, adjustable and strong enough to cope with rapid changes in direction took a few attempts. 
+
+**NOTE:** *Make sure you use metal servo arms and use thread lock for the centre screw.*
+
+Amazon AU: [Savox 50KG Servo](https://amzn.to/3ORcDxg)
+
+## Phase 2: The Brains
+
+![Desktop View](ralph-brains-v1.jpeg){: height="300" width="300" .normal}
+![Desktop View](RALPH-brains-pixhawk.jpeg){: height="300" width="300" .normal}<br>
+
+
+The next phase was setting up the brains of RALPH. The Pixhawk flight controller was used for basic controls, and a Raspberry Pi 4 was connected using the MAVLink protocol. High precision GPS units were connected to the Pixhawk for navigation. Everything was logged via the Raspberry Pi, allowing for continuous tracking and adjustment.
+
+As you can see, it got a little complex and below is a list of each item in the "Brains Box" and a brief description of its function:
+</p>
+
+
+
+### 1) [Pixhawk Orange Cube](https://ardupilot.org/copter/docs/common-thecubeorange-overview.html) flight controller  
+This is used to control servo's and to store mapped routes.
+
+### 2) Raspberry PI4
+This is used as a server within the build and connects to the Pixhawk via the MAVlink protocol. I managed to build a Raspian image with ROS as I plan to move functions from the Pixhawk to ROS over time and I'll explain why later in the post. I used an 8GB PI, again because I'd rather have too much than too little
+> Amazon AU: [Raspberry Pi 4 Model B 8GB](https://amzn.to/45MNSJ1)
+
+### 3) M.2 NVMe and Enclosure
+Logging was expected to be significant and Raspberry's can be unreliable using SD Cards and so I decided to use NVMe connected via USB. I used 500GB M.2 but you might not need this much room, i'd rather have too much then too little. <br>
+
+> Amazon AU: [Inateck M.2 NVMe Enclosure](https://amzn.to/42qRttn)<br>
+> Amazon AU: [Samsung 500GB NVMe M.2 SSD](https://amzn.to/3WBgMHM)
+
+### 4) 4G Modem
+This is used to enable constant communications for PC control, logging and RTK feeds.
+
+> Core Electronics: [SIM7600G-H 4G HAT (B)](https://core-electronics.com.au/sim7600g-h-4g-hat-b-for-raspberry-pi-lte-cat-4-4g-3g-2g-support-gnss-positioning-global-band.html)
+
+### 5) Powered USB Expansion
+Theres quite a lot of peripherals attached to the Raspberry PI and I found that it wasn's able to provide enough power to all of the devices. I used this Powered USB Expansion to add more USB ports used a PCM to provide power from 12v down to 5V. 
+> Amazon AU: [Tendak USB Hub](https://amzn.to/3oARKMg)
+
+### 6) Alpha USB Wifi
+We have good Wifi coverage at home, as well as outside and so I wanted to be able to use Wifi rather than 4G whilst testing and so added this long range Wifi adapter that worked quite well. 
+> Amazon AU: [Alfa Wireless B/G/N USB Adaptor](https://amzn.to/3qee7HU)
+
+### 7) Ardusimple RTK GPS
+One of the key requirements is high precision GPS which is a whole topic in its self. I ended up with two Ardusimple simpleRTK2B. Two were used to enable high precision direction finding as compasses can be unreliable, or at least not accurate enough in real-time. The enable reliable high precision its necessary to get an RTK feed from a local base station. I found a publicly available feed local to where we live and so the modem us used to receive this feed.
+
+> Ardusimple: [simpleRTK2B GPS + Antenna](https://www.ardusimple.com/product/simplertk2b/)
+
+## Phase 3: Mapping and Programming
+
+The final phase was mapping and programming, which was taken care of by the ArduRover software. I programmed some waypoint buttons into the remote control unit, then guided RALPH around the area manually, capturing waypoints as it went. This data was uploaded to ArduRover, and using software features, the mowing tracks were defined and re-uploaded to the Pixhawk.
+
+## The Process: Implement, Test, Learn, Repeat
+
+The development of RALPH was a cyclic process of implementing, testing, learning, and repeating. After each implementation of a new feature or function, extensive testing was carried out to identify any issues. These were then addressed in the next round of implementation, following a continuous improvement model.
+
+## Challenges and Triumphs
+
+As with any tech project, there were challenges along the way. But every hurdle was an opportunity to learn and innovate. The final result? A fully functional, automated mower that can take care of your lawn while you enjoy your free time.
+
+## Conclusion
+
+[<img src="https://i.ytimg.com/vi/drU9T3oE3QA/maxresdefault.jpg" width="50%">](https://www.youtube.com/watch?v=drU9T3oE3QA "RALPH on the move")
+
+So, how hard can it be to automate your lawn mowing? With some tech know-how, the right tools, and a bit of perseverance, pretty hard actually. But the satisfaction of seeing RALPH glide around the yard, doing the work for you? Absolutely priceless.
+
+There is a bunch more todo with RALPH, the most important of which is Collision Avoidance. We have experimented with LIDAR however its too sensitive. Next we will try using some car reversing sensors and will feature this, and more detail in our next post.
+
+Stay tuned for more tech adventures, where we'll continue to ask, "How hard can it be?" After all, with technology and a sprinkle of imagination, the possibilities are truly endless.
+
+> *We don't get paid for promotions or get free products, if we do, we will specifically let you know. Using affiliate links helps to support our work without any cost to you.*
