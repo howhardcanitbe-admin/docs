@@ -2,7 +2,7 @@
 title: "RALPH: The Adventure of Building an Automated Lawn Mower - Part 1"
 description: "Journey through the creation of RALPH, a fully automated, full-size mower built with a Husqvarna mower, a Pixhawk flight controller, and a Raspberry Pi."
 by: Stuart Hirst
-date: 2023-05-27 12:00:00
+date: 2023-05-30 12:00:00
 categories: [automation,technology]
 tags: [automated lawn mower, DIY tech project, remote control mower, RALPH, Raspberry Pi, Pixhawk, lawn care technology]
 pin: true
