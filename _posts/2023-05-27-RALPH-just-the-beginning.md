@@ -58,7 +58,7 @@ The Cube Orange is an impressive unit and provides way more than we initially ne
 
 ### 2) Raspberry PI4
 ![Raspberry PI 4](raspberry_pi_4.jpg){: alt="Raspberry PI 4" height="200" width="200" .right}
-The Raspberry PI 4 needs no introduction and if you dont know what it is already, this probably not the project for you. This is used as a server within the build and connects to the Cube Orange via the MAVlink protocol. I managed to build a Raspian image with ROS as I plan to move functions from the Ardupilot to ROS over time and I'll explain why later in the post. I used an 8GB PI, again because I'd rather have too much than too little.
+The Raspberry PI 4 needs no introduction and if you dont know what it is already, this probably not the project for you. This is used as a server within the build and connects to the Cube Orange via the MAVlink protocol. I managed to build a Raspian image with [ROS](https://www.ros.org/) as I plan to move functions from the [Ardupilot](https://ardupilot.org/) to ROS over time and I'll explain why later in the post. I used an 8GB PI, again because I'd rather have too much than too little.
 > Amazon AU: [Raspberry Pi 4 Model B 8GB](https://amzn.to/45MNSJ1)
 
 ### 3) M.2 NVMe and Enclosure
@@ -111,8 +111,12 @@ As with any tech project, there were challenges along the way. But every hurdle 
 
 So, how hard can it be to automate your lawn mowing? With some tech know-how, the right tools, and a bit of perseverance, pretty hard actually. But the satisfaction of seeing RALPH glide around the yard, doing the work for you? Absolutely priceless.
 
-There is a bunch more todo with RALPH, the most important of which is Collision Avoidance. We have experimented with LIDAR however its too sensitive and get confused by dust and flying grass clippings in the wind. Next we will try using some car reversing sensors and will feature this, and more detail in our next post.
+There is a bunch more todo with RALPH:
 
+- [x] Collision avoidance. We have experimented with LIDAR however its too sensitive and gets confused by dust and flying grass clippings in the wind. 
+- [ ] Next we will try using some car reversing sensors and will feature this, and more detail in our next post.
+- [ ] Experiment with moving from Orange Cube to ROS for mission execution. I find that Ardurover has heaps of super complex options and it might be easier in the long run to create me own ROS code. I'd also like to create a mobile phone app to control the mower which might be easier using Flutter and ROS2.
+ 
 Stay tuned for more tech adventures, where we'll continue to ask, "How hard can it be?" After all, with technology and a sprinkle of imagination, the possibilities are truly endless.
 
 > *We don't get paid for promotions or get free products, if we do, we will specifically let you know. Using affiliate links helps to support our work without any cost to you.*
