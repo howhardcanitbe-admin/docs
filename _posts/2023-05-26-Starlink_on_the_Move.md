@@ -56,3 +56,7 @@ Remember, if you're interested in following our journey in real-time, make sure 
 
 We hope you enjoyed this post and found it helpful. If you have any questions, feel free to leave a comment below. We appreciate your feedback and look forward to sharing more exciting content with you. As always, we're here to ask, _"How hard can it be?"_
 
+## Update
+
+Ive been so impressed with Starlink and Dishy that I've decided to make it more permanent. Follow for Part 2 where we mount Dishy in a StarMount, convert it to 12v and create an enterprise grade wifi deployment.
+
